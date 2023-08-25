@@ -83,6 +83,16 @@ footer a {
     font-size: 0.9em;
 }
 
+@media (max-width: 600px) {
+    .card {
+        width: 280px;
+    }
+
+    .social-links{
+        width: 250px;
+    }
+}
+
 @media (max-width: 375px) {
     .card {
         width: 270px;
