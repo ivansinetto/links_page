@@ -1,104 +1,256 @@
-/*versão: 1.0.6*/
+/* versão 1.1.0 */
 @charset "UTF-8";
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,400&display=swap');
 
 * {
-    margin: 0;
-    font-family: 'poppins';
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
 }
 
+/* Loader wrapper ocupa a tela inteira */
+.loader-wrapper {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg);
+  z-index: 9999;
+  transition: background-color 0.3s ease;
+}
+
+.loader {
+  display: block;
+  --height-of-loader: 4px;
+  width: 130px;
+  height: var(--height-of-loader);
+  border-radius: 30px;
+  background-color: rgba(0, 0, 0, 0.1); /* base clara */
+  position: relative;
+  overflow: hidden;
+}
+
+.loader::before {
+  content: "";
+  position: absolute;
+  background: var(--accent);
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  border-radius: 30px;
+  animation: moving 1s ease-in-out infinite;
+}
+
+@keyframes moving {
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+    right: 0;
+    left: unset;
+  }
+}
+
+/* Tema Claro */
+:root {
+  --bg: #ffffff;
+  --accent: #0071e2;
+}
+
+/* Tema Escuro */
+body.dark-mode {
+  --bg: #121212;
+  --accent: #4dabf7;
+}
+
+.hidden {
+  display: none !important;
+}
+
+
+/* LAYOUT GERAL */
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background: linear-gradient(to right ,#f208fa,  #170370);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: #e0e0e0;
+  color: #090909;
 }
 
+/* CARD */
 .card {
-    background: rgba(255, 255, 255, 0.2);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 10px 10px 10px 3px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(10px);
-    width: 65vh;
-    text-align: center;
+  border-radius: 50px;
+  text-align: center;
+  padding: 40px;
+  background: #e0e0e0;
+  box-shadow: 20px 20px 60px #bebebe,
+              -20px -20px 60px #ffffff;
 }
 
+/* PERFIL */
 #perfil {
-    width: 200px;
-    margin: 10px 10px 0px 10px;
+  width: 200px;
+  margin: 10px 10px 0 10px;
+  border-radius: 50%;
+  box-shadow: 6px 6px 12px #c5c5c5,
+              -6px -6px 12px #ffffff;
+}
+
+/* TEXTO */
+#username {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#bio {
+  font-style: italic;
 }
 
 ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 ul li {
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-ul li a {
-    text-align: center;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 a {
-    color: #170370;
-    text-decoration: none;
+  color: #170370;
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
 a:hover {
-    color: #f700ff;
-}
-
-.social-links {
-    background-color: rgba(255, 255, 255, 0.438);
-    padding: 5px;
-    border-radius: 7px;
-    width: 300px;
-    margin: 0 auto;
-}
-
-.icone-social {
-    width: 20px;
-    height: 20px;
-    vertical-align: -20%;
+  color: #f700ff;
 }
 
 footer {
-    text-align: center;
+  text-align: center;
 }
 
-footer p{
-    margin-top: 10px;
-    font-size: 0.9em;
+footer p {
+  margin-top: 20px;
+  font-size: 0.9em;
 }
 
 footer a {
-    font-size: 0.9em;
+  font-size: 0.9em;
 }
 
-@media (max-width: 600px) {
-    .card {
-        width: 290px;
-    }
+/* BOTÕES SOCIAIS */
+.link-buttons button {
+  width: 300px;
+  color: #090909;
+  padding: 0.7em 1.7em;
+  font-size: 18px;
+  border-radius: 0.5em;
+  background: #e0e0e0;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+  box-shadow: 6px 6px 12px #c5c5c5,
+              -6px -6px 12px #ffffff;
+}
 
-    .social-links{
-        width: 260px;
-    }
+.link-buttons button:active {
+  box-shadow: inset 4px 4px 12px #c5c5c5,
+              inset -4px -4px 12px #ffffff;
+  color: #666;
+}
+
+.icone-social {
+  width: 20px;
+  height: 20px;
+  vertical-align: -20%;
+}
+
+/* BOTÃO DARK MODE */
+#dark-mode-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 12px;
+  background: #e0e0e0;
+  box-shadow: 4px 4px 8px #bebebe,
+              -4px -4px 8px #ffffff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+#dark-mode-toggle:active {
+  box-shadow: inset 4px 4px 8px #bebebe,
+              inset -4px -4px 8px #ffffff;
+}
+
+/* TEMA ESCURO */
+body.dark-mode {
+  background: #1c1c1c;
+  color: #f0f0f0;
+}
+
+body.dark-mode .card {
+  background: #1c1c1c;
+  box-shadow: 20px 20px 60px #141414,
+              -20px -20px 60px #2a2a2a;
+}
+
+body.dark-mode #perfil {
+  box-shadow: 6px 6px 12px #141414,
+              -6px -6px 12px #2a2a2a;
+}
+
+body.dark-mode a {
+  color: #9fc3ff;
+}
+
+body.dark-mode a:hover {
+  color: #ff8af7;
+}
+
+body.dark-mode .link-buttons button {
+  background: #1c1c1c;
+  color: #f0f0f0;
+  box-shadow: 6px 6px 12px #141414,
+              -6px -6px 12px #2a2a2a;
+}
+
+body.dark-mode .link-buttons button:active {
+  box-shadow: inset 4px 4px 12px #141414,
+              inset -4px -4px 12px #2a2a2a;
+  color: #aaa;
+}
+
+body.dark-mode #dark-mode-toggle {
+  background: #1c1c1c;
+  color: #f0f0f0;
+  box-shadow: 4px 4px 8px #141414,
+              -4px -4px 8px #2a2a2a;
+}
+
+body.dark-mode #dark-mode-toggle:active {
+  box-shadow: inset 4px 4px 8px #141414,
+              inset -4px -4px 8px #2a2a2a;
+}
+
+/* RESPONSIVO */
+@media (max-width: 600px) {
+  .card {
+    width: 290px;
+  }
 }
 
 @media (max-width: 375px) {
-    .card {
-        width: 270px;
-    }
-
-    .social-links{
-        width: 240px;
-    }
+  .card {
+    width: 270px;
+  }
 }
